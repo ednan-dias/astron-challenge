@@ -1,0 +1,238 @@
+<style>
+  div#background_root {
+    background-image: url("{{ section.settings.background_root | img_url }}");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    width: 100%;
+    height: 500px;
+    padding: 0 200px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  div#info {
+    width: 500px;
+    min-height: 250px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  div#info h1 {
+    max-width: 60%;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+
+  div#info p {
+    font-size: 14px;
+    color: white;
+    line-height: 20px;
+    text-align: center;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  div#info a {
+    width: 100px;
+    height: 30px;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+
+    background: #f81c2d;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  div#content {
+    width: 100%;
+    flex: 1;
+    padding: 10px 0;
+
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  article.cupom {
+    width: 220px;
+    min-width: 220px;
+    height: 100%;
+    border-radius: 20px;
+
+    background: white;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  article.cupom main {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  article.cupom main div.text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  article.cupom main div.text p {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    font-size: 16px;
+    color: #0a24c8;
+    line-height: 40px;
+  }
+
+  article.cupom main div.text p.discount {
+    font-size: 60px;
+    color: #e81c39;
+  }
+
+  article.cupom main div.text p.discount span {
+    font-size: 30px;
+  }
+
+  article.cupom footer {
+    max-width: 250px;
+    height: 70px;
+
+    background: #e81c39;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+
+  article.cupom footer hr {
+    width: 100%;
+    border: 4px dashed white;
+
+    color: transparent;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+  }
+
+  article.cupom footer h1 {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+  }
+</style>
+
+<div id="background_root">
+  <div id="info">
+    <h1 id="info_title">{{ section.settings.info_title }}</h1>
+    <p>{{ section.settings.info_subtitle }}</p>
+    <a href="{{section.settings.button_link}}" target="_blank">VEM CÁ</a>
+  </div>
+  <div id="content">
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'cupons' %}
+        <article class="cupom">
+          <main>
+            <div class="text">
+              <p>CUPOM DE ATÉ</p>
+              <p class="discount">{{ block.settings.discount_text }}<span>%</span>
+              </p>
+              <p>DE DESCONTO</p>
+            </div>
+          </main>
+
+          <footer>
+            <hr>
+            <h1>USE: {{ block.settings.cupom_text }}</h1>
+          </footer>
+        </article>
+      {% endcase %}
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Cupons de Descontos",
+    "settings": [
+      {
+        "id": "background_root",
+        "type": "image_picker",
+        "label": "Selecione uma imagem"
+      }, {
+        "id": "info_title",
+        "type": "text",
+        "label": "Título"
+      }, {
+        "id": "info_subtitle",
+        "type": "text",
+        "label": "Subtítulo"
+      }, {
+        "type": "text",
+        "id": "button_link",
+        "label": "Link do Botão"
+      }
+    ],
+    "max_blocks": 4,
+    "blocks": [
+      {
+        "name": "Cupons",
+        "type": "cupons",
+        "settings": [
+          {
+            "type": "number",
+            "id": "discount_text",
+            "label": "Desconto"
+          }, {
+            "type": "text",
+            "id": "cupom_text",
+            "label": "Código Cupom"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Cupons de Descontos",
+        "category": "Custom"
+      }
+    ]
+  }
+{% endschema %}

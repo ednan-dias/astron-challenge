@@ -1,0 +1,52 @@
+{
+  "sections": {
+    "640a2334-6f88-4e97-a2d2-db96ce666e39": {
+      "type": "astron-challenge",
+      "blocks": {
+        "b09c2ca8-4d29-455e-99bf-146d81ff471f": {
+          "type": "cupons",
+          "settings": {
+            "discount_text": 5,
+            "cupom_text": "vcmerece"
+          }
+        },
+        "ec11cca7-a94e-4116-ab0a-03e459c94e07": {
+          "type": "cupons",
+          "settings": {
+            "discount_text": 10,
+            "cupom_text": "vcmerece"
+          }
+        },
+        "541eef75-6135-42a5-80e1-a6eccfa046c1": {
+          "type": "cupons",
+          "settings": {
+            "discount_text": 15,
+            "cupom_text": "vcmerece"
+          }
+        },
+        "26e73d55-1f51-4935-b5e2-e485a37c63c0": {
+          "type": "cupons",
+          "settings": {
+            "discount_text": 20,
+            "cupom_text": "vcmerece"
+          }
+        }
+      },
+      "block_order": [
+        "b09c2ca8-4d29-455e-99bf-146d81ff471f",
+        "ec11cca7-a94e-4116-ab0a-03e459c94e07",
+        "541eef75-6135-42a5-80e1-a6eccfa046c1",
+        "26e73d55-1f51-4935-b5e2-e485a37c63c0"
+      ],
+      "settings": {
+        "background_root": "shopify:\/\/shop_images\/azul.jpg",
+        "info_title": "A GENTE SABE QUE VOCÊ AMA CUPOM",
+        "info_subtitle": "Por isso, preparamos vários deles para você aproveitar nossas ofertas com ainda mais desconto",
+        "button_link": "www.google.com.br"
+      }
+    }
+  },
+  "order": [
+    "640a2334-6f88-4e97-a2d2-db96ce666e39"
+  ]
+}
